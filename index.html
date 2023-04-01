@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vowel Highlighter</title>
+    <style>
+      .highlight {
+        font-weight: bold;
+      }
+
+      #output {
+        font-size: 72pt;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="color" id="colorPicker" onchange="highlightVowels()" value="#ff0000">
+    <textarea id="input" oninput="highlightVowels()"></textarea>
+    <div id="output"></div>
+    <script>
+      function highlightVowels() {
+        var input = document.getElementById("input");
+        var vowels = ["a", "e", "i", "o", "u"];
+        var text = input.value;
+        var highlightedText = "";
+        var color = document.getElementById("colorPicker").value;
+        for (var i = 0; i < text.length; i++) {
+          var char = text[i];
+          if (vowels.includes(char.toLowerCase())) {
+            highlightedText += "<span style='color: " + color + "' class='highlight'>" + char + "</span>";
+          } else {
+            highlightedText += char;
+          }
+        }
+        document.getElementById("output").innerHTML = highlightedText;
+      }
+    </script>
+  </body>
+</html>
